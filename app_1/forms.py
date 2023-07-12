@@ -9,7 +9,6 @@ from django import forms
 class IssuerForm(ModelForm):
     class Meta:
         model = Issuer 
-#        fields =  ('issuer_name', 'issuer_credit_rating', 'issuer_country_of_risk', 'issuer_sector') 
         fields =  "__all__"
         
  #   widgets = {        
@@ -25,14 +24,14 @@ class SecurityForm(ModelForm):
         model = Bond 
         fields = "__all__"  
         widgets = {        
-         'isin': forms.TextInput(attrs={'style':'width:185px', 'placeholder': 'ISIN'}), 
-         'coupon': forms.NumberInput(attrs={'style':'width:185px', 'placeholder': 'Coupon'}),
-         'maturity_date': forms.DateTimeInput(attrs={'style':'width:185px', 'placeholder': 'Maturity Date'}),
-          'currency_code': forms.TextInput (attrs={'style':'width:185px', 'placeholder': 'Currency'}) 
+         'isin': forms.TextInput(attrs={'style':'width:155px', 'placeholder': 'ISIN'}), 
+         'coupon': forms.NumberInput(attrs={'style':'width:155px', 'placeholder': 'Coupon'}),
+         'maturity_date': forms.DateInput(attrs={'style':'width:155px', 'placeholder': 'Maturity Date'}),
+          'currency_code': forms.TextInput (attrs={'style':'width:155px', 'placeholder': 'Currency'}) 
         }     
-        labels = {        
-
-        }     
+#        labels = {       
+#
+#        }     
 
 
 class PositionForm(ModelForm):
@@ -41,7 +40,7 @@ class PositionForm(ModelForm):
         fields = ['instrument','position']
 
         widgets = {        
-         'position': forms.NumberInput(attrs={'style':'width:320px', 'placeholder': 'position'}) 
+         'position': forms.NumberInput(attrs={'style':'width:282px', 'placeholder': 'position'}) 
         }
     
 
