@@ -1,0 +1,47 @@
+{% load static %}
+{% load humanize %}
+
+<html>
+ 
+<head>
+         <title> Portolfio Viewer</title>       
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+          <link rel="stylesheet" href  = "{% static 'style2.css' %}">
+        </head>
+
+ <body>   
+  <div class="topbar" font-size ="30px"> Investment Analytics </div>
+   <div class="container">
+      <aside>
+        <div class ="navbar">
+            <nav>
+                <ul>
+                  <a href="/app_1"><button class="btnx"><i class="fa fa-home"></i> Home</button></a>
+                </ul>
+            </nav>
+        </div>
+      </aside>
+
+
+   <main>  
+      {% if submitted  %}
+        <div class="centered2" > Security  submitted successfully!</div>
+      {% else %}
+          <div class="card active">
+            <div class="content">Add Security</div>
+          </div>
+              <div class="centered3" > 
+                <form action="" method = POST>
+                  {% csrf_token %}
+                    <table class  = "table2" font-weight="normal" >
+                      {{myform.as_table}}
+                    </table>
+                 
+                  <p><input type = "submit" value = "Submit" class = "btnbx" ></p> 
+                </form> 
+            </div>
+      {% endif %}
+   </main>
+ </body>
+</html>

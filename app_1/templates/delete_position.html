@@ -1,0 +1,36 @@
+{% load static %}
+{% load humanize %}
+
+<html>
+ 
+<head>
+         <title> Portolfio Viewer</title>       
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+          <link rel="stylesheet" href  = "{% static 'style2.css' %}">
+        </head>
+
+ <body>   
+    <div class="topbar" font-size ="30px"> Investment Analytics </div>
+    <div class="container">
+      <aside>
+        <div class ="navbar">
+            <nav>
+                <ul>
+                  <a href="/app_1"><button class="btnx"><i class="fa fa-home"></i> Home</button></a>
+                </ul>
+            </nav>
+        </div>
+      </aside>
+
+
+      <main>  
+        <div class="card ">
+          <div class="content">Delete Position</div>
+        </div>
+
+        <div class="centered2" border-style= "none"> position {{mypos}}  deleted successfully!</div>
+    
+       </main>
+ </body>
+</html>

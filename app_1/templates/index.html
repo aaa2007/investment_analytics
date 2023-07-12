@@ -1,0 +1,162 @@
+{% load static %}
+{% load humanize %}
+
+<html>
+ 
+<head>
+         <title> Portolfio Viewer</title>       
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+          <link rel="stylesheet" href  = "{% static 'style2.css' %}">
+<script>
+    function showPage(page){          
+        document.querySelectorAll('.card').forEach(
+         div=>{div.style.display ='none';
+        })
+         
+        document.querySelector(`#${page}`).style.display='block';
+      }
+    
+      document.addEventListener('DOMContentLoaded',function(){
+        document.querySelectorAll('.btnx').forEach(button => {
+            button.onclick=function(){
+            showPage(this.dataset.page);
+           }
+       });
+    });
+</script>
+
+
+
+
+
+ </head>
+  <body> 
+   <div class="topbar" > Investment Analytics </div>
+   <div class="container">
+      <aside>
+        <div class ="navbar">
+            <nav>
+                <ul>
+                        <button class="btnx" data-page="page1"><i class="fa fa-home"></i> Home</button><br>
+                        <button class="btnx" data-page ="page2"><i class="fa fa-bars"></i> Issuers</button><br>
+                        <button class="btnx" data-page ="page3"><i class="fa fa-bars"></i> Securities</button><br>
+                        <button class="btnx" data-page ="page4"><i class="fa fa-bars"></i> Portfolio</button><br>
+                        <button class="btnx" data-page ="page5"><i class="fa fa-area-chart"></i> Charts</button><br>
+                </ul>
+            </nav>
+        </div>
+      </aside>
+    <main>
+
+       
+
+        <div id = "page1" class="card">
+                <div class="content">Welcome</div>
+        </div>
+       
+        <div  id = "page2" class="card">
+               
+                <div class="content">Issuers  </div>
+                <div class="content2"> <a href="/app_1/add_issuer"><button class="btnb"><i class="fa fa-plus"></i> Add Issuer </button></a></div>
+
+                        <table class="table3">
+                                <tr>
+                                        <td align="center">Issuer Name</td>
+                                        <td align="center">Credit Rating</td>
+                                        <td align="center">Sector</td>
+                                        <td align="center">Country</td>
+                                        <td align="center">Update</td>
+                                        <td align="center">Delete</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid gray"></tr>
+                                {% for iss in myissuers %}
+                                <tr>
+                                        <td align = "center">{{iss.issuer_name}}</td>
+                                        <td align = "center">{{iss.issuer_credit_rating}}</td>
+                                        <td align = "center">{{iss.issuer_sector}}</td>
+                                        <td align = "center">{{iss.issuer_country_of_risk}}</td>
+                                        <td align="center"><a href="{% url 'update_issuer' iss.id %}"> <button class="btnb"><i class="fa fa-edit" style="font-size:13px"></i>   </button></a> </td>
+                                        <td align="center"><a href="{% url 'delete_issuer' iss.id %}"> <button class="btnb"><i class="fa fa-trash-o" style="font-size:13px"></i>  </button></a> </td>
+                                        <tr style="border-bottom:1px solid rgb(201, 197, 197)"></tr>
+                                </tr>
+                                {% endfor %}
+                        </table>
+        </div>
+
+        <div id = "page3" class="card">
+                <div class="content">Securities</div>
+                <div class="content2"> 
+                     <!--   <button class="btnb"><i class="fa fa-arrow-right"></i> Calculate Yield  </button>-->
+                        <a href="/app_1/add_security"><button class="btnb"><i class="fa fa-plus"></i> Add Security </button></a>
+               </div>
+
+                <table class = "table1">
+                <tr>
+                        <td align="center">ISIN</td>
+                        <td align="left">Issuer</td>
+                        <td align="center">Coupon (%)</td>
+                        <td align="center">Currency</td>
+                        <td align="center">Maturity Date</td>
+                        <td align="center">YTM (%)</td>
+                        <td align="center">Price</td>
+                        <td align="center">Update</td>
+                        <td align="center">Delete</td>
+                </tr>
+                <tr style="border-bottom:1px solid gray"></tr>
+                {% for bond in mybonds %}
+                <tr>
+                        <td align = center>{{bond.isin}}</td>
+                        <td>{{bond.bond_issuer}}</td>
+                        <td align="center">{{bond.coupon|floatformat:2|intcomma}}</td>
+                        <td align="center">{{bond.currency_code}}</td>
+                        <td align="center">{{bond.maturity_date|date:'d-m-Y'}}</td>
+                        <td align="center">{{bond.yield_to_maturity|floatformat:2|intcomma}}</td>
+                        <td align="center">{{bond.price|floatformat:2|intcomma}}</td>
+                        <td align="center"><a href="{% url 'update_security' bond.id %}"> <button class="btnb"><i class="fa fa-edit" style="font-size:13px" padding="none"></i>   </button></a> </td>
+                        <td align="center"><a href="{% url 'delete_security' bond.id %}"> <button class="btnb"><i class="fa fa-trash-o" style="font-size:13px" padding="none" ></i>  </button></a> </td>
+
+ 
+                </tr>
+                <tr style="border-bottom:1px solid rgb(201, 197, 197)"></tr>
+
+                {% endfor %}
+                </table>
+        </div>
+        <div id = "page4" class="card" >
+          <div class="content">Portfolio</div>
+          <div class="content2"> <a href="/app_1/add_position"><button class="btnb"><i class="fa fa-plus"></i> Add Position </button></a></div>
+
+          <table class = "table1">
+                <tr>
+                   <td align = left>Instrument</td>
+                   <td align = right>Position</td>
+                   {% comment %}
+                   <td align = center>dv01</td>
+                   {% endcomment %}
+                   <td align = center>Update</td>
+                   <td align = center>Delete</td>
+                </tr>
+                 <tr style="border-bottom:1px solid gray"></tr>
+                {% for pos in mypositions %}
+                <tr>
+                   <td align = "left">{{pos.instrument}}</td>
+                   <td align="right">{{pos.position|floatformat:0|intcomma}}</td>
+                   {% comment %}
+                   <td align="center" id>{{pos.dv01|floatformat:0|intcomma}}</td>
+                   {% endcomment %}
+                   <td align="center"><a href="{% url 'update_position' pos.id %}"> <button class="btnb"><i class="fa fa-edit" style="font-size:13px"></i>   </button></a> </td>
+                   <td align="center"><a href="{% url 'delete_position' pos.id %}"> <button class="btnb"><i class="fa fa-trash-o" style="font-size:13px"></i>  </button></a> </td>
+                </tr>
+                <tr style="border-bottom:1px solid rgb(201, 197, 197)"></tr>
+
+                 {% endfor %}
+              </table>
+        </div>
+
+        <div id = "page5" class="card" >
+                <div class="content">Chart</div>
+        </div>
+     </main>
+   </div>
+ </body>
+</html>
