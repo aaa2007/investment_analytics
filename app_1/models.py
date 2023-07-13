@@ -21,7 +21,7 @@ class Bond(models.Model):
    coupon =  models.FloatField()
    currency_code = models.CharField(max_length=3)
 
- 
+
    @property
    def time_to_maturity(self):
      ttm =((self.maturity_date - valuation_date).days)/day_count_base
