@@ -155,7 +155,7 @@ transform: translateY(1px);
 
 /* from w3 */
 .btnb {
-background-color: var(--main-color);;
+background-color: var(--main-color);
 border: none;
 color: var(--myfont-color);
 padding: 5px 5px;
