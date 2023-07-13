@@ -161,38 +161,7 @@
                 <div class="content">Chart</div>
                 <table class = "table3">
                  <canvas id="myChart" style="width:100%;max-width:1000px;padding-left: 250px; padding-top:100px"></canvas>
-                 <script>
-                        const xValues = [];
-                        const yValues = [];
-                        generateData("100+100*(.1+Math.random()*x/100);", 0, 100, 1);
-                        
-                        new Chart("myChart", {
-                          type: "line",
-                          data: {
-                            labels: xValues,
-                            datasets: [{
-                              fill: false,
-                              pointRadius: 1,
-                              borderColor: "#3b46ac;",
-                              data: yValues
-                            }]
-                          },    
-                          options: {
-                            legend: {display: false},
-                            title: {
-                              display: true,
-                              text: "chart example",
-                              fontSize: 16
-                            }
-                          }
-                        });
-                        function generateData(value, i1, i2, step = 1) {
-                          for (let x = i1; x <= i2; x += step) {
-                            yValues.push(eval(value));
-                            xValues.push(x);
-                          }
-                        }      
-           </script>
+
             </table>
         </div>
      </main>
