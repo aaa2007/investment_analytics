@@ -11,13 +11,7 @@ class IssuerForm(ModelForm):
         model = Issuer 
         fields =  "__all__"
         
- #   widgets = {        
- #      'issuer_name': forms.TextInput(attrs={'class':'form-control'}), 
- #      'issuer_credit_rating': forms.TextInput(attrs={'class':'form-control'}) ,
- #      'issuer_country_of_risk': forms.TextInput(attrs={'class':'form-control'}), 
- #      'issuer_sector': forms.TextInput(attrs={'class':'form-control'}) 
- #     }
-    
+
 
 class SecurityForm(ModelForm):
     class Meta:
@@ -29,9 +23,6 @@ class SecurityForm(ModelForm):
          'maturity_date': forms.DateInput(attrs={'style':'width:155px', 'placeholder': 'Maturity Date'}),
           'currency_code': forms.TextInput (attrs={'style':'width:155px', 'placeholder': 'Currency'}) 
         }     
-#        labels = {       
-#
-#        }     
 
 
 class PositionForm(ModelForm):
