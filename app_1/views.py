@@ -16,7 +16,6 @@ from django.http import HttpResponseRedirect
 
 
 def index(request):
-#  mypositions = Position.objects.values('instrument').annotate(position=Sum('position'))
   mypositions = Position.objects.all().order_by('instrument')
   myissuers = Issuer.objects.all().order_by('issuer_name')
   mybonds = Bond.objects.all().order_by('bond_issuer')
@@ -36,7 +35,6 @@ def add_issuer(request):
     form = IssuerForm(request.POST)
     if form.is_valid():
       form.save()
-#      return  HttpResponseRedirect('../?submitted=True')
       return  HttpResponseRedirect('/app_1/add_issuer/?submitted=True')
   else:
     form = IssuerForm
@@ -57,7 +55,6 @@ def add_security(request):
     if form.is_valid():
       form.save()
       return  HttpResponseRedirect('/app_1/add_security/?submitted=True')
-#    return  HttpResponseRedirect('../?submitted=True')
   else:
     form = SecurityForm
     if 'submitted' in request.GET:
